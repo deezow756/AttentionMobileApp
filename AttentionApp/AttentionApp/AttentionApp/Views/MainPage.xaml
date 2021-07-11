@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             x:Class="AttentionApp.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Grid x:Name="MainContent" Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackLayout Padding="10,10,10,0" Orientation="Horizontal" Grid.Row="0">
+                <ImageButton x:Name="btnHelp"
+                             Source="{DynamicResource helpIcon}"
+                             BackgroundColor="Transparent"
+                             Clicked="btnHelp_Clicked"   
+                             HorizontalOptions="StartAndExpand"
+                             >
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Button BackgroundColor="Transparent"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                <ImageButton x:Name="btnContacts"
+                             Source="{DynamicResource ContactsIcon}"
+                             BackgroundColor="Transparent"
+                             Clicked="btnContacts_Clicked"
+                             HorizontalOptions="EndAndExpand"
+                             >
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Padding="20,10,20,20" Spacing="20">
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <Label  x:Name="txtName"
+                        Text="" 
+                        Style="{DynamicResource LargeLabel}"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                    <Label  x:Name="txtNumber"
+                        Text="" 
+                        Style="{DynamicResource MediumLabel}"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                </StackLayout>
+                <StackLayout x:Name="layoutButton" IsVisible="true" VerticalOptions="CenterAndExpand">
+                    <ImageButton x:Name="btnAttention"
+                             Source="{DynamicResource CircleIcon}"
+                             BackgroundColor="Transparent"
+                             Clicked="btnAttention_Clicked"  
+                             >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </StackLayout>
+                <StackLayout x:Name="layoutTimer" IsVisible="false" VerticalOptions="CenterAndExpand">
+                    <Label  x:Name="txtTimer"
+                        Text="" 
+                        Style="{DynamicResource TitleLabel}"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                </StackLayout>
+                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
+                    <ListView x:Name="listMessages" SeparatorColor="{DynamicResource PrimaryColor}" HeightRequest="300" HorizontalOptions="CenterAndExpand" HasUnevenRows="true" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell ClassId="{Binding Name}" Tapped="ViewCell_Tapped">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Style="{Binding Icon}" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding Name}" Style="{DynamicResource MediumLabel}" HorizontalOptions="CenterAndExpand" LineBreakMode="WordWrap"/>
+                                        <Image WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton x:Name="btnLock"
+                             Style="{DynamicResource LockedImageButton}"
+                             Clicked="btnLock_Clicked"
+                                     HorizontalOptions="StartAndExpand"
+                             >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                        <ImageButton x:Name="btnAdd"
+                             Source="{DynamicResource PlusIcon}"
+                             BackgroundColor="Transparent"
+                             Clicked="btnAdd_Clicked"
+                                     HorizontalOptions="CenterAndExpand"
+                             >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                        <ImageButton x:Name="btnDelete"
+                             Source="{DynamicResource DeleteIcon}"
+                             BackgroundColor="Transparent"
+                             Clicked="btnDelete_Clicked"
+                                     HorizontalOptions="EndAndExpand"
+                             >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </Grid>
+
+        <Frame CornerRadius="10" Padding="10" Margin="0" Grid.Row="0" x:Name="arcFrame" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="300" WidthRequest="300" IsVisible="false" BackgroundColor="Transparent" HasShadow="True">
+            <ContentView x:Name="frameArcContentView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
+        </Frame>
+        <Frame CornerRadius="10" Padding="10" Margin="0" Grid.Row="0" x:Name="passcodePopupFrame" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="600" WidthRequest="500" IsVisible="false" BackgroundColor="Transparent" HasShadow="True">
+            <ContentView x:Name="passcodePopupContentView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
+        </Frame>
+    </Grid>
+
+</ContentPage>
